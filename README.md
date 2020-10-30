@@ -1,6 +1,8 @@
 # Wehrmacht Enigma I
 The Enigma was employed extensively by Nazi Germany during World War II.
 
+<img width="720px" src="Image/Console_Output.png"/>
+
 ### Tools
 - [best emulator for understanding wiring](https://piotte13.github.io/enigma-cipher/)
 - [tool for testing output](https://cryptii.com/pipes/enigma-machine)
