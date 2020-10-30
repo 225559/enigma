@@ -1,9 +1,3 @@
-// Links that helped me a lot:
-//      https://piotte13.github.io/enigma-cipher/               (for understanding wiring, best emulator)
-//      https://cryptii.com/pipes/enigma-machine                (for testing output)
-//      https://www.101computing.net/enigma-machine-emulator/   (emulator which shows basic encryption steps)
-
-
 #pragma region Include
 #include "Utility.h"
 #include <iostream>
@@ -63,9 +57,9 @@ int main ()
         #pragma region Calculate Reverse Rotors
         char Rotor_Reverse [3][26];
 
-        Copy (Rotor [Left],   Rotor_Reverse [Left], 26);
+        Copy (Rotor [Left],   Rotor_Reverse [Left],   26);
         Copy (Rotor [Middle], Rotor_Reverse [Middle], 26);
-        Copy (Rotor [Right],  Rotor_Reverse [Right], 26);
+        Copy (Rotor [Right],  Rotor_Reverse [Right],  26);
 
         Reverse (Rotor_Reverse [Left]);
         Reverse (Rotor_Reverse [Middle]);
@@ -96,8 +90,8 @@ int main ()
 
         Format_Plaintext (& Plaintext);
 
-        cout << "----------------------------------------------------------------------------------------------------------------" << endl;
         cout << "Ciphertext:" << endl;
+        cout << "----------------------------------------------------------------------------------------------------------------" << endl;
         #pragma endregion
 
         for (int I = 0; I < Plaintext.length(); ++I)
@@ -174,8 +168,8 @@ char Encrypt_Character (char const Plugboard [10][2], char C)
 char Encrypt_Character (char Rotor [26], char Ring_Position, char C)
 {
         int Offset = 0;
-        Offset = Mod (Alphabet_Index (C)               + Alphabet_Index (Ring_Position), 26);
-        Offset = Mod (Alphabet_Index (Rotor [Offset])  - Alphabet_Index (Ring_Position), 26);
+        Offset = Mod (Alphabet_Index (C)              + Alphabet_Index (Ring_Position), 26);
+        Offset = Mod (Alphabet_Index (Rotor [Offset]) - Alphabet_Index (Ring_Position), 26);
         return Alphabet [Offset];
 }
 
@@ -258,74 +252,74 @@ void Set_Ring_Setting (char Source [26], char RS)
         Copy (Temp, Source, 26);
 }
 
+/*
+  Example:
+  Ringstellung          AAA
+  Rotor position        AAZ
+  Keyboard input        A
+  Right Rotor III       Rotate_Left
+  Rotor position        AAA
 
-// Ringstellung         AAA
-// Rotor position       AAZ
-// Keyboard input       A
-// Right Rotor III 	Rotate_Left
-// Rotor position       AAA
-//
-//	--------------------------
-//	A becomes B:
-//	--------------------------
-//      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//	BDFHJLCPRTXVZNYEIWGAKMUSQO (Right Rotor III)
-//	--------------------------
-//
-//
-//	--------------------------
-//	B becomes J:
-//	--------------------------
-//      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//	AJDKSIRUXBLHWTMCQGZNPYFVOE (Middle Rotor II)
-//
-//
-//	--------------------------
-//	J becomes Z:
-//	--------------------------
-//	ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//      EKMFLGDQVZNTOWYHXUSPAIBRCJ (Left Rotor I)
-//
-//
-//	--------------------------
-//	Z becomes T:
-//	--------------------------
-//      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//	YRUHQSLDPXNGOKMIEBFZCWVJAT (Reflector B)
-//
-//
-//	--------------------------
-//	T becomes L:
-//	--------------------------
-//	ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//	||||||||||||||||||||||||||
-//	UWYGADFPVZBECKMTHXSLRINQOJ (Reverse Left Rotor I)
-//	--------------------------
-//
-//	--------------------------
-//      L becomes K:
-//      --------------------------
-//      ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//	AJPCZWRLFBDKOTYUQGENHXMIVS (Reverse Middle Rotor II)
-//	--------------------------
-//
-//
-//	--------------------------
-//	K becomes U:
-//	--------------------------
-//	ABCDEFGHIJKLMNOPQRSTUVWXYZ
-//      ||||||||||||||||||||||||||
-//	TAGBPCSDQEUFVNZHYIXJWLRKOM (Reverse Right Rotor III)
+        --------------------------
+	A becomes B:
+	--------------------------
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+        BDFHJLCPRTXVZNYEIWGAKMUSQO (Right Rotor III)
+	--------------------------
 
 
+	--------------------------
+	B becomes J:
+	--------------------------
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+	AJDKSIRUXBLHWTMCQGZNPYFVOE (Middle Rotor II)
+
+
+	--------------------------
+	J becomes Z:
+	--------------------------
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+        EKMFLGDQVZNTOWYHXUSPAIBRCJ (Left Rotor I)
+
+
+	--------------------------
+	Z becomes T:
+	--------------------------
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+	YRUHQSLDPXNGOKMIEBFZCWVJAT (Reflector B)
+
+
+	--------------------------
+	T becomes L:
+	--------------------------
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+	||||||||||||||||||||||||||
+	UWYGADFPVZBECKMTHXSLRINQOJ (Reverse Left Rotor I)
+	--------------------------
+
+	--------------------------
+        L becomes K:
+        --------------------------
+        ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+	AJPCZWRLFBDKOTYUQGENHXMIVS (Reverse Middle Rotor II)
+	--------------------------
+
+
+	--------------------------
+	K becomes U:
+	--------------------------
+	ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        ||||||||||||||||||||||||||
+	TAGBPCSDQEUFVNZHYIXJWLRKOM (Reverse Right Rotor III)
+*/
 void Step (char * C)
 {
-        *C = Alphabet [Mod (Alphabet_Index (*C) + 1, 26)];
+        * C = Alphabet [Mod (Alphabet_Index (* C) + 1, 26)];
 }
 
 
@@ -344,5 +338,5 @@ void Format_Plaintext (string * Plaintext)
                         Tmp += Plaintext->at (I);
                 }
         }
-        *Plaintext = Tmp;
+        * Plaintext = Tmp;
 }

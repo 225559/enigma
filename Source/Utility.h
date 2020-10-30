@@ -5,8 +5,10 @@
 using namespace std;
 
 
-// C++ lacks the correct modulus functionality for negative numbers
-// Found alternative mod function here: https://stackoverflow.com/questions/43018206/modulo-of-negative-integers-in-go
+/*
+        C++ lacks the correct modulus functionality for negative numbers
+        Found alternative mod function here: https://stackoverflow.com/questions/43018206/modulo-of-negative-integers-in-go
+*/
 int Mod (int D, int M)
 {
         int R = D % M;
@@ -18,30 +20,32 @@ int Mod (int D, int M)
 }
 
 
-bool Is_Upper_Case (char c)
+bool Is_Upper_Case (char C)
 {
-        if (c >= 'A' && c <= 'Z') return true;
+        if (C >= 'A' && C <= 'Z') return true;
         else                      return false;
 }
 
 
-bool Is_Lower_Case (char c)
+bool Is_Lower_Case (char C)
 {
-        if (c >= 'a' && c <= 'z') return true;
+        if (C >= 'a' && C <= 'z') return true;
         else                      return false;
 }
 
 
-// Credits to: https://catonmat.net/ascii-case-conversion-trick
-char Toggle_Case (char c)
+/*
+        Credits to: https://catonmat.net/ascii-case-conversion-trick
+*/
+char Toggle_Case (char C)
 {
-        return c ^ 0b00100000;
+        return C ^ 0b00100000;
 }
 
 
-bool Is_ASCII (char c)
+bool Is_ASCII (char C)
 {
-        return (Is_Upper_Case (c) || Is_Lower_Case (c));
+        return (Is_Upper_Case (C) || Is_Lower_Case (C));
 }
 
 
