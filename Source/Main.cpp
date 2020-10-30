@@ -91,7 +91,6 @@ int main ()
         Format_Plaintext (& Plaintext);
 
         cout << "Ciphertext:" << endl;
-        cout << "----------------------------------------------------------------------------------------------------------------" << endl;
         #pragma endregion
 
         for (int I = 0; I < Plaintext.length(); ++I)
