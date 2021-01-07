@@ -21,3 +21,11 @@ class Rotor:
         for c in self.rotor:
             tmp += self.alphabet[(self.alphabet.index(c) + offset) % 26]
         self.rotor = tmp
+
+    def reverse(self):
+        tmp = ""
+        for a in self.alphabet:
+            for b in self.rotor:
+                if a == b:
+                    tmp += self.alphabet[self.rotor.index(b)]
+        self.rotor = tmp

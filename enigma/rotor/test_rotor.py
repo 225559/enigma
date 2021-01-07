@@ -9,7 +9,7 @@ class TestRotor(unittest.TestCase):
         tt = [
             {"rotor" : 1, "expected" : "EKMFLGDQVZNTOWYHXUSPAIBRCJ"},
             {"rotor" : 2, "expected" : "AJDKSIRUXBLHWTMCQGZNPYFVOE"},
-            {"rotor" : 3, "expected" : "BDFHJLCPRTXVZNYEIWGAKMUSQO"},            
+            {"rotor" : 3, "expected" : "BDFHJLCPRTXVZNYEIWGAKMUSQO"},
         ]
         for tc in tt:
             rtor = rotor.Rotor(tc["rotor"])
@@ -104,4 +104,22 @@ class TestRotor(unittest.TestCase):
         for tc in tt:
             rtor = rotor.Rotor(tc["rotor"])
             rtor.ring_setting(tc["ring_setting"])
+            self.assertEqual(tc["expected"], rtor.rotor)
+
+    # Example (reverse rotor I):
+    #
+    # EKMFLGDQVZNTOWYHXUSPAIBRCJ original rotor I
+    # ||||||||||||||||||||||||||
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ mapping
+    # ||||||||||||||||||||||||||
+    # UWYGADFPVZBECKMTHXSLRINQOJ reversed rotor I
+    def test_reverse(self):
+        tt = [
+            {"rotor" : 1, "expected" : "UWYGADFPVZBECKMTHXSLRINQOJ"},
+            {"rotor" : 2, "expected" : "AJPCZWRLFBDKOTYUQGENHXMIVS"},
+            {"rotor" : 3, "expected" : "TAGBPCSDQEUFVNZHYIXJWLRKOM"}
+        ]
+        for tc in tt:
+            rtor = rotor.Rotor(tc["rotor"])
+            rtor.reverse()
             self.assertEqual(tc["expected"], rtor.rotor)
