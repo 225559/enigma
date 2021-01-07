@@ -15,6 +15,46 @@ class TestRotor(unittest.TestCase):
             rtor = rotor.Rotor(tc["rotor"])
             self.assertEqual(tc["expected"], rtor.rotor)
 
+    # Example (Rotor 3 ring setting):
+    #
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # BDFHJLCPRTXVZNYEIWGAKMUSQO (Rotor III - Ring setting A)
+    #
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # PCEGIKMDQSUYWAOZFJXHBLNVTR (Rotor III - Ring setting B)
+    #
+    #
+    #  Ring setting H    Ring setting G    Ring setting F     Ring setting E     Ring setting D     Ring setting C     Ring setting B     Ring setting A
+    #    ---------         ---------         ---------          ---------          ---------          ---------          ---------          ---------
+    #    Z       Z         Z       Z         Z    ---Z          Z       Z          Z       Z          Z       Z          Z       Z          Z       Z
+    #    Y       Y         Y       Y         Y   /   Y          Y    ---Y          Y       Y          Y       Y          Y       Y          Y       Y
+    #    X       X         X       X         X   |   X          X   /   X          X    ---X          X       X          X       X          X       X
+    #    W       W         W       W         W   |   W          W   |   W          W   /   W          W     --W          W       W          W       W
+    #    V       V         V       V         V   |   V          V   |   V          V   |   V          V   /   V          V    ---V          V       V
+    #    U       U         U       U         U   |   U          U   |   U          U   |   U          U   |   U          U   /   U          U    ---U
+    #    T       T         T       T         T   |   T          T   |   T          T   |   T          T   |   T          T   |   T          T   /   T
+    #    S       S         S       S         S   |   S          S   |   S          S   |   S          S   |   S          S   |   S          S   |   S
+    #    R---    R         R       R         R   |   R          R   |   R          R   |   R          R   |   R          R   |   R          R   |   R
+    #    Q   \   Q         Q---    Q         Q   /   Q          Q   |   Q          Q   |   Q          Q   |   Q          Q   |   Q          Q   |   Q
+    #    P   |   P         P   \   P         P---    P          P   /   P          P   |   P          P   |   P          P   |   P          P   |   P
+    #    O   |   O         O   |   O         O       O          O---    O          O   /   O          O   |   O          O   |   O          O   |   O
+    #    N   |   N         N   |   N         N       N          N       N          N---    N          N   /   N          N   |   N          N   |   N
+    #    M   |   M         M   |   M         M       M          M       M          M       M          M---    M          M   /   M          M   |   M
+    #    L   |   L         L   |   L         L       L          L       L          L       L          L       L          L---    L          L   /   L
+    #    K   |   K         K   |   K         K       K          K       K          K       K          K       K          K       K          K---    K
+    #    J   |   J         J   |   J         J       J          J       J          J       J          J       J          J       J          J       J
+    #    I   |   I         I   |   I         I       I          I       I          I       I          I       I          I       I          I       I
+    #    H   |   H         H   |   H         H       H          H       H          H       H          H       H          H       H          H       H
+    #    G   |   G         G   |   G         G       G          G       G          G       G          G       G          G       G          G       G
+    #    F   |   F         F   |   F         F       F          F       F          F       F          F       F          F       F          F       F
+    #    E   |   E         E   |   E         E       E          E       E          E       E          E       E          E       E          E       E
+    #    D   |   D         D   |   D         D       D          D       D          D       D          D       D          D       D          D       D
+    #    C   \   C         C   |   C         C       C          C       C          C       C          C       C          C       C          C       C
+    #    B    ---B         B   \   B         B       B          B       B          B       B          B       B          B       B          B       B
+    # == A       A ==   == A    ---A ==   == A       A ==    == A       A ==    == A       A ==    == A       A ==    == A       A ==    == A       A == Ring Position
+    #    ---------         ---------         ---------          ---------          ---------          ---------          ---------          ---------
     def test_ring_setting(self):
         tt = [
             # Test all ring settings for rotor I
