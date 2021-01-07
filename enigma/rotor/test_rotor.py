@@ -231,3 +231,34 @@ class TestRotor(unittest.TestCase):
     # TAGBPCSDQEUFVNZHYIXJWLRKOM (Reverse Right Rotor III)
     def test_encrypt(self):
         pass
+
+
+    # Example (rotate rotor III):
+    #
+    #  +-------------------------+
+    #  |                         |
+    #  V                         |
+    #   EKMFLGDQVZNTOWYHXUSPAIBRCJ
+    #
+    # Result: JEKMFLGDQVZNTOWYHXUSPAIBRC
+    #
+    def test_rotate(self):
+        tt = [
+            # rotate entire round
+            {"rotor" : 1, "rotations": 26, "expected" : "EKMFLGDQVZNTOWYHXUSPAIBRCJ"},
+
+            # rotate once (like in example)
+            {"rotor" : 1, "rotations": 1, "expected" : "JEKMFLGDQVZNTOWYHXUSPAIBRC"},
+
+            # no rotation
+            {"rotor" : 2, "rotations": 0, "expected" : "AJDKSIRUXBLHWTMCQGZNPYFVOE"},
+
+            # rotate an arbitrary number of times
+            {"rotor" : 3, "rotations": 11, "expected" : "EIWGAKMUSQOBDFHJLCPRTXVZNY"},
+
+            # TODO: negative rotations?
+        ]
+        for tc in tt:
+            rtor = rotor.Rotor(tc["rotor"])
+            rtor.rotate(tc["rotations"])
+            self.assertEqual(tc["expected"], rtor.rotor)

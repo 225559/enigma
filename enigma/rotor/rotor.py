@@ -16,7 +16,7 @@ class Rotor:
 
     def ring_setting(self, setting):
         offset = self.alphabet.index(setting)
-        self.rotor = self.rotor[26 - offset:] + self.rotor[0:26 - offset]
+        self.rotate(offset)
         tmp = ""
         for c in self.rotor:
             tmp += self.alphabet[(self.alphabet.index(c) + offset) % 26]
@@ -29,3 +29,7 @@ class Rotor:
                 if a == b:
                     tmp += self.alphabet[self.rotor.index(b)]
         self.rotor = tmp
+
+    def rotate(self, num = 1):
+        for i in range(0, num):
+            self.rotor = self.rotor[25:] + self.rotor[0:25]
