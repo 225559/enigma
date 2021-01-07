@@ -15,6 +15,7 @@ class TestRotor(unittest.TestCase):
             rtor = rotor.Rotor(tc["rotor"])
             self.assertEqual(tc["expected"], rtor.rotor)
 
+
     # Example (Rotor 3 ring setting):
     #
     # ABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -146,6 +147,7 @@ class TestRotor(unittest.TestCase):
             rtor.ring_setting(tc["ring_setting"])
             self.assertEqual(tc["expected"], rtor.rotor)
 
+
     # Example (reverse rotor I):
     #
     # EKMFLGDQVZNTOWYHXUSPAIBRCJ original rotor I
@@ -163,3 +165,69 @@ class TestRotor(unittest.TestCase):
             rtor = rotor.Rotor(tc["rotor"])
             rtor.reverse()
             self.assertEqual(tc["expected"], rtor.rotor)
+
+
+    # Example (encrypting a letter):
+    #
+    # Ring setting                  AAA
+    # Rotor position before input   AAZ
+    # Keyboard input                  A
+    # TODO: plugboard
+    # Right rotor III steps
+    # Rotor position                AAA
+    # TODO: plugboard
+    # Output                          U
+    #
+    # --------------------------
+    # A becomes B:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # BDFHJLCPRTXVZNYEIWGAKMUSQO (Right Rotor III)
+    # --------------------------
+    #
+    # --------------------------
+    # B becomes J:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # AJDKSIRUXBLHWTMCQGZNPYFVOE (Middle Rotor II)
+    #
+    # --------------------------
+    # J becomes Z:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # EKMFLGDQVZNTOWYHXUSPAIBRCJ (Left Rotor I)
+    #
+    # --------------------------
+    # Z becomes T:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # YRUHQSLDPXNGOKMIEBFZCWVJAT (Reflector B)
+    #
+    # --------------------------
+    # T becomes L:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # UWYGADFPVZBECKMTHXSLRINQOJ (Reverse Left Rotor I)
+    # --------------------------
+    #
+    # --------------------------
+    # L becomes K:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # AJPCZWRLFBDKOTYUQGENHXMIVS (Reverse Middle Rotor II)
+    # --------------------------
+    #
+    # --------------------------
+    # K becomes U:
+    # --------------------------
+    # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    # ||||||||||||||||||||||||||
+    # TAGBPCSDQEUFVNZHYIXJWLRKOM (Reverse Right Rotor III)
+    def test_encrypt(self):
+        pass
